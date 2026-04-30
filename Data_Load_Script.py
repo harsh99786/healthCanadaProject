@@ -23,9 +23,13 @@ for file in files:
     table_name = file.replace(".csv", "")  # remove extension
     
     df = spark.read \
-        .option("header", True) \
-        .option("inferSchema", True) \
-        .csv(f"/Users/manat/Desktop/projects/ClinicalTrialData/{file}")
+    .option("header", True) \
+    .option("inferSchema", True) \
+    .option("multiLine", True) \
+    .option("quote", '"') \
+    .option("escape", '"') \
+    .option("lineSep", "\n") \
+    .csv(f"/Users/manat/Desktop/projects/ClinicalTrialData/{file}")
     
     df.write.jdbc(
         url=jdbc_url,

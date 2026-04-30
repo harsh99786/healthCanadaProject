@@ -1,3 +1,5 @@
+import csv
+
 import requests
 import pandas as pd
 
